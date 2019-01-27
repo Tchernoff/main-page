@@ -1,0 +1,490 @@
+/*-------------------------------------------------------------
+                           Imports
+-------------------------------------------------------------*/
+
+@import "_reset.scss";
+
+/*-------------------------------------------------------------
+                         Variables
+-------------------------------------------------------------*/
+/* fonts */
+
+$main-font: "Source Sans Pro", Helvetica, sans-serif;
+/* colors */
+$main: #585858;         // main font, button and menu background color
+$pink: #f2849e;         // mouse over and click transition color
+$white: #ffffff;        // font color for colored background
+$light-gray: #f6f6f6;   // footer background color
+$gray: #c9c9c9;         // footer border and input placeholder font color
+
+/* menu button */
+$size: 30px;
+$height: $size / 7;
+$margin: $size / 3.0;
+
+/* breakpoints */
+$breakpoints: (
+        'small': ('(min-width: 576px)'),    // landscape mobile
+        'middle': ('(min-width: 768px)'),   // tablet
+        'large': ('(min-width: 992px)'),    // laptop
+        'xlarge': ('(min-width: 1280px)'),  // desktop
+);
+
+/* content-block margin */
+$small-screen-margin: 50px 25px 10px 25px;
+$middle-screen-margin: 80px 40px 0 40px;
+
+  /*-------------------------------------------------------------
+                             Mixins
+  -------------------------------------------------------------*/
+/* breakpoints mixin */
+@mixin media($name) {
+  @if map-has-key($breakpoints, $name) {
+    $value: map-get($breakpoints, $name);
+    $query: if(type-of($value) == "string", $value, inspect($value));
+    @media #{$query} {
+      @content;
+    }
+  }
+  @else {
+    @warn "Unfortunately, no value could be retrieved from `#{$breakpoints}`. "
+        + "Please make sure it is defined in `$breakpoints` map.";
+  }
+}
+
+@mixin text_style {
+  color: $main;
+  font-family: $main-font;
+  font-size: 16px;
+  font-weight: 100;
+  line-height: 1.75;
+}
+
+@mixin title_style {
+  color: $main;
+  font-family: $main-font;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/*-------------------------------------------------------------
+                         Fonts
+-------------------------------------------------------------*/
+
+.text {
+  @include text_style;
+  @include media(xlarge) {
+    font-size: 18px;
+  }
+}
+
+.h2 {
+  @include title_style;
+  font-size: 1.75em;
+  letter-spacing: -1px;
+  padding: 0 0 25px 0;
+  @include media(middle) {
+    font-size: 42px;  // resize for laptop screens
+  }
+  @include media(xlarge) {
+    font-size: 50px; // resize for desktop screens
+  }
+}
+
+.h3 {
+  @include title_style;
+  font-size: 18px;
+  letter-spacing: 3px;
+  padding: 10px 0 25px 0;
+}
+
+/*-------------------------------------------------------------
+            padding and margin for content blocks
+-------------------------------------------------------------*/
+.footer-inner, .main, .content-block-item, .header {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.content-block {
+  padding: $small-screen-margin;
+
+  @include media(middle) {
+    padding: $middle-screen-margin;
+  }
+}
+
+.content-block-item {
+  margin-bottom: 50px;
+}
+
+/*-------------------------------------------------------------
+                        Page Structure
+-------------------------------------------------------------*/
+/*-------------------------------------------------------------
+                            Header
+-------------------------------------------------------------*/
+
+.header {
+  .header__menu-window {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 0;
+    right: -250px;
+    position: fixed;
+    height: 100%;
+    width: 320px;
+    z-index: 10;
+    transition: all 0.4s;
+
+    /* button style start */
+    .header__button {
+      padding: 30px 10px;
+      .header__button-inner {
+        cursor: pointer;
+        position: relative;
+        height: $margin*3 + $height*1;
+        width: $margin*2 + $size;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 3px;
+        &:after,
+        &:before {
+          content: '';
+          background-color: $main;
+          width: $size;
+          height: $height;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          margin: auto;
+          position: absolute;
+          transition: 1.0s;
+          transition-timing-function: cubic-bezier(.53, 0, .15, 1.3);
+        }
+
+        &:before {
+          top: -28%;
+        }
+
+        &:after {
+          top: 28%;
+        }
+      }
+
+      .close:before {
+        transform: rotate(-225deg);
+        top: 0;
+        background-color: $pink;
+      }
+
+      .close:after {
+        transform: rotate(225deg);
+        top: 0;
+        background-color: $pink;
+      }
+    }
+    /* button style end */
+
+    .header__menu {
+      padding: 35px 25px 0 25px;
+      flex-grow: 8;
+      display: flex;
+      flex-direction: column;
+      background-color: $main;
+      color: $white;
+
+      .header__title {
+        color: $white;
+      }
+
+      .header__link {
+        cursor: pointer;
+        margin: 10px auto;
+        width: 100%;
+        color: $white;
+        border-bottom: 1px solid #f6f6f6;
+        line-height: 45px;
+      }
+
+      .header__link:hover {
+        color: $pink;
+        transition: 0.4s ease-in-out color;
+      }
+    }
+  }
+
+  /* menu onclick open up */
+  .header__menu-window_open {
+    right: 0;
+  }
+
+  &__title {
+    margin-top: 30px;
+  }
+}
+
+/*-------------------------------------------------------------
+                            Main
+-------------------------------------------------------------*/
+
+.main {
+  .page-introduction {
+    .page-introduction__link {
+      margin-left: 4px;
+      text-decoration: none;
+      border-bottom: 1px dotted $main;
+      color: $main;
+    }
+
+    .page-introduction__link:hover {
+      transition: 0.2s ease-in-out color;
+      color: $pink;
+    }
+  }
+
+  .project-links {
+    width: 100%;
+
+    div:nth-child(1) {
+      background-color: #de7f90;
+    }
+
+    div:nth-child(2) {
+      background-color: #72bae4;
+    }
+
+    div:nth-child(3) {
+      background-color: #73b8ad;
+    }
+
+    div:nth-child(4) {
+      background-color: #c26a99;
+    }
+
+    div:nth-child(5) {
+      background-color: #ad8ec9;
+    }
+
+    div:nth-child(6) {
+      background-color: #889ce1;
+    }
+
+    &-inner {
+      position: relative;
+      height: 0;
+      border: none;
+      margin-top: 25px;
+      padding-top: 88%;
+      border-radius: 4px;
+      transform: scale(1);
+      transition: 0.2s transform ease-in-out;
+
+      .project-links-item {
+        cursor: pointer;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h3, p {
+          padding: 0 10px;
+          text-align: center;
+          color: $white;
+        }
+      }
+    }
+
+    .project-links-inner:hover {
+      transform: scale(1.1);
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+}
+
+/*-------------------------------------------------------------
+                            Footer
+-------------------------------------------------------------*/
+
+  .footer {
+    background-color: $light-gray;
+
+    .footer-follow-links {
+      .footer-follow-links__list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .footer-follow-links__item {
+        cursor: pointer;
+        height: 24px;
+        width: 24px;
+        padding: 10px;
+        margin: 15px 15px 0 0;
+        border: 1px solid $gray;
+        border-radius: 4px;
+        fill: $main;
+      }
+
+      .footer-follow-links__item:hover {
+        transition: fill 0.2s ease-in-out;
+        border-color: $pink;
+        fill: $pink;
+      }
+    }
+
+    .footer-mail-form {
+      input {
+        width: 100%;
+        margin: 10px  0;
+        padding: 12px 0;
+        border: none;
+        border-bottom: 1px solid $gray;
+        background-color: $light-gray;
+        font-size: 15px;
+        letter-spacing: 1px;
+      }
+
+      input[type=submit] {
+        cursor: pointer;
+        width: 100%;
+        margin: 10px 25px 10px 0;
+        padding: 15px 0;
+        border: none;
+        border-radius: 4px;
+        color: $white;
+        background-color: $main;
+        font-size: 13px;
+        letter-spacing: 3px;
+        font-family: $main-font;
+        font-weight: 900;
+      }
+
+      input[type=submit]:hover {
+        transition: background-color 0.2s ease-in-out;
+        background-color: $pink;
+      }
+
+      input:focus, input:active {
+        outline: none;
+        border: none;
+        border-bottom: 1px solid $pink;
+      }
+    }
+  }
+
+@media only screen and (min-width: 481px) {
+  /* project links in 2 columns */
+  .main {
+    .project-links {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 25px;
+
+      div:nth-child(2n+1) {
+        margin-right: 25px;
+      }
+
+      &-inner {
+        width: 47%;
+        padding-top: 47%;
+        cursor: pointer;
+      }
+    }
+  }
+  /* name email inputs in one line */
+  .footer {
+    .footer-mail-form {
+      input:nth-child(1) {
+        margin-right: 3%;
+      }
+      input:nth-child(2) {
+        float: right;
+      }
+
+      input:nth-child(-n+2) {
+        width: 47%;
+      }
+
+      input[type=submit] {
+        width: 100px;
+      }
+    }
+  }
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  /*  bigger margins for project links */
+  .main {
+    .project-links {
+      &-inner {
+        margin-top: 40px;
+      }
+
+      div:nth-child(2n+1) {
+        margin-right: 40px;
+      }
+    }
+  }
+
+  /*  follow links and mail from in one line */
+  .footer {
+    height: 400px;
+
+    .footer-follow-links{
+      width: 30%;
+      float: right;
+    }
+
+    .footer-mail-form {
+      width: 60%;
+      float: left;
+    }
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  /* project links in 3 columns */
+  .main {
+    .project-links {
+      div {
+        margin-right: 40px;
+      }
+
+      div:nth-child(3n) {
+        margin-right: 0 !important;
+      }
+
+      &-inner {
+        margin-top: 40px;
+        width: 30%;
+        padding-top: 30%;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  /* much bigger margins for project links */
+  .main {
+    .project-links {
+      div {
+        margin-right: 50px !important;
+      }
+
+      &-inner {
+        margin-top: 50px !important;
+      }
+    }
+  }
+}
+

@@ -1,0 +1,42 @@
+{
+  "name": "phantomm",
+  "version": "1.0.0",
+  "description": "Training Project",
+  "main": "index.js",
+  "dependencies": {
+    "npm": "^6.6.0",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.26.3",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^3.2.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "node-normalize-scss": "^8.0.0",
+    "node-sass": "^4.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "store-project"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "gulp",
+    "scss",
+    "bem",
+    "js",
+    "jade",
+    "flexbox",
+    "grid"
+  ],
+  "author": "Yury Chernov",
+  "license": "ISC"
+}
