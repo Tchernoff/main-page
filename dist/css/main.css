@@ -169,14 +169,12 @@ table {
         -webkit-transform: rotate(-225deg);
             -ms-transform: rotate(-225deg);
                 transform: rotate(-225deg);
-        top: 0;
-        background-color: #f2849e; }
+        top: 0; }
       .header .header__menu-window .header__button .close:after {
         -webkit-transform: rotate(225deg);
             -ms-transform: rotate(225deg);
                 transform: rotate(225deg);
-        top: 0;
-        background-color: #f2849e; }
+        top: 0; }
     .header .header__menu-window .header__menu {
       padding: 35px 25px 0 25px;
       -webkit-box-flex: 8;
@@ -245,7 +243,7 @@ table {
   .main .project-links-inner {
     position: relative;
     height: 0;
-    border: none;
+    border: 1px solid transparent;
     margin-top: 25px;
     padding-top: 88%;
     -webkit-border-radius: 4px;
@@ -253,12 +251,10 @@ table {
     -webkit-transform: scale(1);
         -ms-transform: scale(1);
             transform: scale(1);
-    -webkit-transition: 0.2s -webkit-transform ease-in-out;
-    transition: 0.2s -webkit-transform ease-in-out;
-    -o-transition: 0.2s transform ease-in-out;
-    transition: 0.2s transform ease-in-out;
-    transition: 0.2s transform ease-in-out, 0.2s -webkit-transform ease-in-out; }
-    .main .project-links-inner .project-links-item {
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
+    .main .project-links-inner .project-links__item {
       cursor: pointer;
       position: absolute;
       top: 0;
@@ -282,19 +278,18 @@ table {
       -webkit-justify-content: center;
           -ms-flex-pack: center;
               justify-content: center; }
-      .main .project-links-inner .project-links-item h3, .main .project-links-inner .project-links-item p {
-        padding: 0 10px;
+      .main .project-links-inner .project-links__item h3, .main .project-links-inner .project-links__item p {
+        width: 90%;
+        padding: 0 50px;
         text-align: center;
         color: #ffffff; }
-  .main .project-links .project-links-inner:hover {
+  .main .project-links-inner:hover {
     -webkit-transform: scale(1.1);
         -ms-transform: scale(1.1);
             transform: scale(1.1);
-    -webkit-transition: -webkit-transform 0.2s ease-in-out;
-    transition: -webkit-transform 0.2s ease-in-out;
-    -o-transition: transform 0.2s ease-in-out;
-    transition: transform 0.2s ease-in-out;
-    transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out; }
+    background-color: #f6f6f6;
+    -webkit-box-shadow: 1px 7px 21px 0 rgba(50, 50, 50, 0.62);
+            box-shadow: 1px 7px 21px 0 rgba(50, 50, 50, 0.62); }
 
 /*-------------------------------------------------------------
                             Footer

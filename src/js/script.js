@@ -3,6 +3,8 @@ function myFunction() {
     document.getElementById("buttonAnimation").classList.toggle("close");
     document.getElementById('menuAnimation').classList.toggle("header__menu-window_open");
 }
+
+
 /* TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 let projects = [
     {

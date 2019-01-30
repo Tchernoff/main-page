@@ -176,13 +176,11 @@ $middle-screen-margin: 80px 40px 0 40px;
       .close:before {
         transform: rotate(-225deg);
         top: 0;
-        background-color: $pink;
       }
 
       .close:after {
         transform: rotate(225deg);
         top: 0;
-        background-color: $pink;
       }
     }
     /* button style end */
@@ -271,17 +269,18 @@ $middle-screen-margin: 80px 40px 0 40px;
       background-color: #889ce1;
     }
 
+
     &-inner {
       position: relative;
       height: 0;
-      border: none;
+      border: 1px solid transparent;
       margin-top: 25px;
       padding-top: 88%;
       border-radius: 4px;
       transform: scale(1);
-      transition: 0.2s transform ease-in-out;
+      transition: all 0.3s ease-in-out;
 
-      .project-links-item {
+      .project-links__item {
         cursor: pointer;
         position: absolute;
         top: 0;
@@ -294,17 +293,20 @@ $middle-screen-margin: 80px 40px 0 40px;
         justify-content: center;
 
         h3, p {
-          padding: 0 10px;
+          width: 90%;
+          padding: 0 50px;
           text-align: center;
           color: $white;
         }
       }
     }
 
-    .project-links-inner:hover {
+    &-inner:hover {
       transform: scale(1.1);
-      transition: transform 0.2s ease-in-out;
+      background-color: $light-gray;
+      box-shadow: 1px 7px 21px 0 rgba(50, 50, 50, 0.62);
     }
+
   }
 }
 
